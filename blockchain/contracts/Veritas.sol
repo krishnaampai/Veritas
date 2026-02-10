@@ -26,24 +26,32 @@ contract Veritas {
             metadata: _metadata,
             exists: true
         });
-
+        emit ProductAdded(_productId, msg.sender);
+        ownershipHistory[_productId].push(
+         OwnershipRecord({
+        owner: msg.sender,
+        timestamp: block.timestamp
+        })
+        );
     }
 
 
-    function transferOwnership(
-        uint256 _productId,
-        address _newOwner
-    ) public {
-        require(products[_productId].exists, "Product does not exist");
-        require(products[_productId].currentOwner == msg.sender, "Not current owner");
-        require(_newOwner != address(0), "Invalid new owner");
+function transferOwnership(
+    uint256 _productId,
+    address _newOwner
+) public onlyOwner(_productId) {
+    require(_newOwner != address(0), "Invalid new owner");
 
-        products[_productId].currentOwner = _newOwner;
-    }
+    products[_productId].currentOwner = _newOwner;
+    emit OwnershipTransferred(_productId, msg.sender, _newOwner);
+    ownershipHistory[_productId].push(
+    OwnershipRecord({
+        owner: _newOwner,
+        timestamp: block.timestamp
+    })
+);
+}
 
-    // =========================
-    // PERSON B: TRACEABILITY & SECURITY
-    // =========================
 
     struct OwnershipRecord {
         address owner;
@@ -64,16 +72,16 @@ contract Veritas {
     );
 
     modifier onlyOwner(uint256 _productId) {
-        // TODO (Person B):
-        // - Require msg.sender == currentOwner
+       require(products[_productId].exists, "Product does not exist");
+       require(products[_productId].currentOwner == msg.sender, "Not current owner");
         _;
     }
 
     function getProductHistory(
         uint256 _productId
     ) public view returns (OwnershipRecord[] memory) {
-        // TODO (Person B):
-        // - Return ownership history
+        require(products[_productId].exists, "Product does not exist");
+        return ownershipHistory[_productId];
     }
 
     function verifyProduct(
@@ -83,8 +91,11 @@ contract Veritas {
         address currentOwner,
         bool valid
     ) {
-        // TODO (Person B):
-        // - Check existence
-        // - Return details
+        if (!products[_productId].exists) {
+            return (address(0), address(0), false);
+        }
+
+        Product memory p = products[_productId];
+        return (p.manufacturer, p.currentOwner, true);
     }
 }
