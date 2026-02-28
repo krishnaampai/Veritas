@@ -1,9 +1,69 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Manufacturer</title>
+    <meta charset="UTF-8">
+    <title>Manufacturer - Veritas</title>
+
+    <link rel="stylesheet" href="Styles/manufacturer.css">
+    <link rel="stylesheet" href="Styles/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
-<body style="background:black; color:white; text-align:center;">
-    <h1>Manufacturer Page</h1>
+
+<body>
+
+<header>
+    <h1>Manufacturer Portal</h1>
+    <p>Only verified manufacturers can add products</p>
+</header>
+
+<div class="manufacturer-container">
+
+    <!-- Wallet Section -->
+    <div class="wallet-section">
+        <button id="connectBtn">
+            <i class="fab fa-ethereum"></i> Connect MetaMask
+        </button>
+
+        <div id="walletAddress" class="status">
+            Wallet not connected
+        </div>
+
+        <div id="verificationStatus" class="status"></div>
+    </div>
+
+    <!-- Product Section -->
+    <div id="productSection" class="product-section hidden">
+
+        <h3>Product Details</h3>
+
+        <div class="form-group">
+            <label>Product Name</label>
+            <input type="text" id="productName">
+        </div>
+
+        <div class="form-group">
+            <label>Serial Number</label>
+            <input type="text" id="serialNumber">
+        </div>
+
+        <div class="form-group">
+            <label>Description</label>
+            <textarea id="description" rows="3"></textarea>
+        </div>
+
+        <div class="center">
+            <button id="addProductBtn">
+                Add Product to Blockchain
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="../frontend/scripts/manufacturer.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
+<script src="../../blockchain/build/contracts/Veritas.json" type="application/json" id="contractData"></script>
+<script src="../frontend/scripts/manufacturer.js"></script>
 </body>
 </html>

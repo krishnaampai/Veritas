@@ -13,6 +13,14 @@ contract Veritas {
 
     mapping(uint256 => Product) internal products;
 
+     struct OwnershipRecord {
+        address owner;
+        uint256 timestamp;
+    }
+
+    mapping(uint256 => OwnershipRecord[]) internal ownershipHistory;
+
+
     function addProduct(
         uint256 _productId,
         string memory _metadata
@@ -53,13 +61,7 @@ function transferOwnership(
 }
 
 
-    struct OwnershipRecord {
-        address owner;
-        uint256 timestamp;
-    }
-
-    mapping(uint256 => OwnershipRecord[]) internal ownershipHistory;
-
+   
     event ProductAdded(
         uint256 productId,
         address manufacturer
