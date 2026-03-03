@@ -1,9 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Consumer</title>
+    <meta charset="UTF-8">
+    <title>Consumer - Veritas</title>
+
+    <link rel="stylesheet" href="Styles/styles.css">
+    <link rel="stylesheet" href="Styles/consumer.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
+    <script src="../config.js"></script>
+    <script defer src="scripts/consumer.js"></script>
 </head>
-<body style="background:black; color:white; text-align:center;">
-    <h1>Consumer Page</h1>
+
+<body>
+
+<header>
+    <h1>Consumer Portal</h1>
+    <p>Verify Product Authenticity</p>
+</header>
+
+<div class="consumer-container">
+
+    <div class="verify-section">
+
+        <div class="form-group">
+            <label>Product ID</label>
+            <input id="serialInput" placeholder="Enter Product ID">
+        </div>
+
+        <div class="center">
+            <button id="verify">Verify Product</button>
+        </div>
+
+        <div id="result" class="status"></div>
+
+    </div>
+
+</div>
+
 </body>
 </html>
