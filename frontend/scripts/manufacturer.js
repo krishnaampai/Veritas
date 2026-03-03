@@ -2,7 +2,7 @@ let currentAccount = null;
 let web3;
 let contract;
 
-const contractAddress = "0x8aC781b293Cfe7441638DE42DE93966633628A3B";
+const contractAddress = window.ENV.CONTRACT_ADDRESS;
 
 const connectBtn = document.getElementById("connectBtn");
 const addProductBtn = document.getElementById("addProductBtn");
