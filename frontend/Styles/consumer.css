@@ -54,6 +54,22 @@ button:hover {
     box-shadow: 0 0 15px rgba(79, 172, 254, 0.5);
 }
 
+#addReviewBtn {
+    position: fixed;
+    bottom: 60px;
+    right: 20px;
+    padding: 12px 18px;
+    font-size: 14px;
+    border: none;
+    background: linear-gradient(45deg, #00e6e6, #4facfe);
+    color: black;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+#addReviewBtn:hover {
+    background-color: #1a5edb;
 .verify-options {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

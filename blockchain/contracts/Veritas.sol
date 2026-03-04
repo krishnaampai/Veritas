@@ -44,7 +44,9 @@ contract Veritas {
         uint256 timestamp;
     }
 
+
     mapping(uint256 => OwnershipRecord[]) internal ownershipHistory;
+    mapping(address => uint256[]) internal productList;
 
 
     function addProduct(
@@ -61,6 +63,7 @@ contract Veritas {
             exists: true
         });
         emit ProductAdded(_productId, msg.sender);
+        productList[msg.sender].push(_productId);
 
         ownershipHistory[_productId].push(
          OwnershipRecord({
