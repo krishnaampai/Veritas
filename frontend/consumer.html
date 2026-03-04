@@ -9,7 +9,9 @@
 
     <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
     <script src="../config.js"></script>
+    <script defer src="scripts/product.js"></script>
     <script defer src="scripts/consumer.js"></script>
+    <script src="https://unpkg.com/html5-qrcode"></script>
 </head>
 
 <body>
@@ -22,17 +24,41 @@
 <div class="consumer-container">
 
     <div class="verify-section">
+        <div class="verify-options">
 
-        <div class="form-group">
-            <label>Product ID</label>
-            <input id="serialInput" placeholder="Enter Product ID">
-        </div>
+    <!-- CAMERA -->
+    <div class="option-card">
+        <h3>📷 Scan QR</h3>
+        <p class="option-desc">Use your camera to scan the product QR code</p>
+        <button id="startScan">Start Camera</button>
+        <div id="reader" class="reader-box"></div>
+    </div>
 
-        <div class="center">
-            <button id="verify">Verify Product</button>
-        </div>
+    <!-- UPLOAD -->
+    <div class="option-card">
+        <h3>🖼 Upload QR</h3>
+        <p class="option-desc">Upload an image containing the QR code</p>
+        <input type="file" id="qr-input-file" accept="image/*">
+    </div>
 
-        <div id="result" class="status"></div>
+    <!-- MANUAL -->
+    <div class="option-card">
+        <h3>🔢 Enter Product ID</h3>
+        <p class="option-desc">Enter the product ID manually</p>
+        <input id="serialInput" placeholder="Enter Product ID">
+        <button id="verify">Verify Product</button>
+    </div>
+
+</div>
+
+<div id="result" class="status"></div>
+
+<h3 id="timelineTitle" style="display:none;">Ownership History</h3>
+<div id="timeline"></div>
+<div id="result" class="status"></div>
+
+<h3 id="timelineTitle" style="display:none;">Ownership History</h3>
+<div id="timeline"></div>
 
     </div>
 

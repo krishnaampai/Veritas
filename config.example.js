@@ -1,0 +1,3 @@
+window.env = {
+  CONTRACT_ADDRESS: "YOUR_CONTRACT_ADDRESS_HERE"
+};

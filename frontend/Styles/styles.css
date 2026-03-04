@@ -104,3 +104,84 @@ footer {
     }
 }
 
+/* TIMELINE CONTAINER */
+#timeline {
+  margin-top: 30px;
+  position: relative;
+  padding-left: 25px;
+}
+
+/* vertical line */
+#timeline::before {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(#00e6e6, #4facfe);
+  opacity: 0.4;
+}
+
+/* timeline item */
+.timeline-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 25px;
+  position: relative;
+}
+
+/* glowing dot */
+.timeline-dot {
+  width: 14px;
+  height: 14px;
+  background: linear-gradient(45deg,#00e6e6,#4facfe);
+  border-radius: 50%;
+  margin-right: 15px;
+  margin-top: 8px;
+
+  box-shadow:
+    0 0 8px rgba(0,230,230,0.8),
+    0 0 16px rgba(79,172,254,0.6);
+}
+
+/* timeline card */
+.timeline-content {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+
+  border: 1px solid rgba(79,172,254,0.3);
+  border-radius: 12px;
+
+  padding: 14px 18px;
+  width: 100%;
+
+  transition: 0.3s ease;
+}
+
+/* hover glow */
+.timeline-content:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 15px rgba(79,172,254,0.4);
+}
+
+/* label */
+.timeline-label {
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #4facfe;
+}
+
+/* wallet */
+.wallet {
+  font-family: monospace;
+  font-size: 14px;
+  color: #ddd;
+}
+
+/* time */
+.time {
+  font-size: 12px;
+  color: #aaa;
+  margin-top: 4px;
+}
