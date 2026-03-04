@@ -70,7 +70,6 @@ async function addProduct() {
             .send({ from: currentAccount });
 
         alert("✅ Product Added to Blockchain!");
-
         console.log("Now verifying from blockchain...");
 
         const result = await contract.methods
