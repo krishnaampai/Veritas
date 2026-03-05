@@ -6,10 +6,8 @@ console.log(window.ENV);
 
 const verifyBtn = document.getElementById("verify");
 const resultDiv = document.getElementById("result");
-const addReviewBtn = document.getElementById("addReviewBtn");
 
 verifyBtn.addEventListener("click",verifyProduct );
-addReviewBtn.addEventListener("click", goToReview);
 
 window.addEventListener("load", initialize);
 
@@ -71,7 +69,7 @@ async function verifyProduct() {
 }
 
 function goToReview() {
-    window.location.href = "review.html";
+    window.location.href = "login.html";
 }
 let html5QrCode;
 
