@@ -68,11 +68,13 @@ async function addProduct() {
 
     try {
 
+
         await contract.methods
             .addProduct(serialNumber, metadata)
             .send({ from: currentAccount });
 
         alert("✅ Product Added to Blockchain!");
+        generateQR(serialNumber);
         console.log("Now verifying from blockchain...");
 
         const result = await contract.methods
@@ -85,4 +87,22 @@ async function addProduct() {
         console.log(error);
         alert("Transaction failed");
     }
+}
+
+function generateQR(productId){
+
+    document.getElementById("qrSection").style.display = "block";
+
+    const canvas = document.getElementById("qrCanvas");
+
+    QRCode.toCanvas(canvas, productId.toString(), {
+        width: 200,
+        color: {
+            dark: "#00e6e6",
+            light: "#000000"
+        }
+    }, function (error) {
+        if (error) console.error(error);
+    });
+
 }
