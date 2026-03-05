@@ -2,18 +2,21 @@ let currentAccount = null;
 let web3;
 let contract;
 
-const contractAddress = window.ENV.CONTRACT_ADDRESS;
+const contractAddress = window.env.CONTRACT_ADDRESS;
 
-const connectBtn = document.getElementById("connectBtn");
-const addProductBtn = document.getElementById("addProductBtn");
-const walletAddressDiv = document.getElementById("walletAddress");
-const verificationStatusDiv = document.getElementById("verificationStatus");
-const productSection = document.getElementById("productSection");
+    const connectBtn = document.getElementById("connectBtn");
+    const addProductBtn = document.getElementById("addProductBtn");
+    const walletAddressDiv = document.getElementById("walletAddress");
+    const verificationStatusDiv = document.getElementById("verificationStatus");
+    const productSection = document.getElementById("productSection");
 
-connectBtn.addEventListener("click", connectWallet);
-addProductBtn.addEventListener("click", addProduct);
+    connectBtn.addEventListener("click", connectWallet);
+    addProductBtn.addEventListener("click", addProduct);
 
-async function connectWallet() {
+
+
+async function connectWallet() 
+{   console.log("Connecting wallet...");
 
     if (!window.ethereum) {
         alert("MetaMask not installed");

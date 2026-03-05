@@ -1,23 +1,68 @@
-<script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+<!DOCTYPE html>
+<html lang="en">
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyBlu9ctyW7loHals1u18osXSz-QyNfnB_k",
-    authDomain: "veritas-revi.firebaseapp.com",
-    projectId: "veritas-revi",
-    storageBucket: "veritas-revi.firebasestorage.app",
-    messagingSenderId: "556623032885",
-    appId: "1:556623032885:web:e42be35612adeacac6f77c",
-    measurementId: "G-P3P74VRWHN"
-  };
+<head>
+<meta charset="UTF-8">
+<title>Product Review - Veritas</title>
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-</script>
+<link rel="stylesheet" href="Styles/styles.css">
+<link rel="stylesheet" href="Styles/review.css">
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+<script defer src="scripts/review.js"></script>
+
+</head>
+
+<body>
+
+<header>
+<h1>Product Review</h1>
+<p>Share your experience with the product</p>
+</header>
+
+<div class="review-wrapper">
+
+<div class="review-card">
+
+<div class="form-group">
+<label>Product ID</label>
+<input id="productId" placeholder="Enter Product ID">
+</div>
+
+<div class="form-group">
+<label>Your Review</label>
+<textarea id="reviewText" placeholder="Write your review"></textarea>
+</div>
+
+<div class="form-group">
+<label>Rating</label>
+
+<div class="star-rating" id="stars">
+<span data-value="1">★</span>
+<span data-value="2">★</span>
+<span data-value="3">★</span>
+<span data-value="4">★</span>
+<span data-value="5">★</span>
+</div>
+
+</div>
+
+<div class="center">
+<button onclick="submitReview()">Submit Review</button>
+</div>
+
+<div class="center">
+<button onclick="logout()">Logout</button>
+</div>
+
+<div id="status" class="status"></div>
+
+</div>
+
+</div>
+
+</body>
+</html>

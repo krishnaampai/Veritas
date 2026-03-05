@@ -1,0 +1,77 @@
+/* Center wrapper */
+
+.signup-wrapper{
+    display:flex;
+    justify-content:center;
+    margin-top:60px;
+}
+
+/* Card */
+
+.signup-card{
+    width:420px;
+    background:#111;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.3);
+}
+
+/* Form */
+
+.form-group{
+    margin-bottom:18px;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:6px;
+    font-weight:500;
+    color:white;
+}
+
+.form-group input{
+    width:100%;
+    padding:10px;
+    border-radius:6px;
+    border:1px solid #ccc;
+}
+
+/* Buttons */
+
+.center{
+    display:flex;
+    justify-content:center;
+}
+
+.center button{
+    width:60%;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    font-size:15px;
+    cursor:pointer;
+
+    background:linear-gradient(135deg,#28add9,#46bde5);
+    color:white;
+
+    transition:all 0.25s ease;
+}
+
+.center button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 6px 14px rgba(0,0,0,0.25);
+}
+
+/* Text spacing */
+
+.text{
+    margin-top:15px;
+    color:white;
+}
+
+/* Status message */
+
+.status{
+    margin-top:10px;
+    text-align:center;
+}

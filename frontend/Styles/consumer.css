@@ -70,6 +70,8 @@ button:hover {
 
 #addReviewBtn:hover {
     background-color: #1a5edb;
+}
+
 .verify-options {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

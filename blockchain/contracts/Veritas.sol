@@ -22,6 +22,11 @@ contract Veritas {
 
         manufacturers[0x9876543210987654321098765432109876543210] =
             Manufacturer("Puma Industries", "LIC54321", true);
+
+         manufacturers[0xF0188CCf02342Ca26FE055Fe0faCd57338e0324e] =
+            Manufacturer("Casio Pvt Ltd", "LIC1679", true);
+
+        
     }
 
     modifier onlyVerifiedManufacturer() {
