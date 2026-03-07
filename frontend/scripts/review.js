@@ -1,16 +1,8 @@
-
-const firebaseConfig = {
-  apiKey: "AIzaSyBlu9ctyW7loHals1u18osXSz-QyNfnB_k",
-  authDomain: "veritas-revi.firebaseapp.com",
-  projectId: "veritas-revi",
-  appId: "1:556623032885:web:e42be35612adeacac6f77c"
-};
-
-firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(window.firebaseConfig);
 
 const auth = firebase.auth();
 const db = firebase.firestore();
-
+let html5QrCode;
 let rating = 0;
 
 
@@ -23,75 +15,133 @@ window.location.href="login.html";
 });
 
 
+const fileInput = document.getElementById("qrFile");
 
-const stars = document.querySelectorAll("#stars span");
+window.addEventListener("load", () => {
 
-stars.forEach(star => {
+    html5QrCode = new Html5Qrcode("reader");
 
-star.addEventListener("click", () => {
+});
 
-rating = star.dataset.value;
+window.addEventListener("DOMContentLoaded", () => {
 
-stars.forEach(s => s.classList.remove("active"));
+  const stars = document.querySelectorAll("#stars span");
+  stars.forEach(star => {
 
-for(let i=0;i<rating;i++){
-stars[i].classList.add("active");
+  star.addEventListener("click", () => {
+
+  rating = star.dataset.value;
+
+  stars.forEach(s => s.classList.remove("active"));
+  for(let i=0;i<rating;i++){
+  stars[i].classList.add("active");
 }
 
 });
 
 });
 
+});
 
 
+
+//  Scan using camera
+
+function startCamera(){
+
+    document.getElementById("reader").style.display = "block";
+
+    html5QrCode.start(
+        { facingMode: "environment" },
+        { fps: 10, qrbox: 250 },
+
+        decodedText => {
+
+            document.getElementById("productId").value = decodedText;
+
+            html5QrCode.stop();
+
+        }
+    );
+
+}
+
+
+//  Upload QR image
+window.addEventListener("load", () => {
+
+    const fileInput = document.getElementById("qrFile");
+
+    fileInput.addEventListener("change", e => {
+
+        if (e.target.files.length === 0) return;
+
+        const imageFile = e.target.files[0];
+
+        html5QrCode.scanFile(imageFile, true)
+            .then(decodedText => {
+
+                document.getElementById("productId").value = decodedText;
+                console.log("QR decoded:", decodedText);
+
+            })
+            .catch(err => {
+                console.log("QR scan failed", err);
+                alert("Could not read QR code");
+            });
+
+    });
+
+});
+
+
+
+// 📝 Submit Review
 function submitReview(){
 
-const user = auth.currentUser;
+    const productId = document.getElementById("productId").value;
+    const reviewText = document.getElementById("reviewText").value;
 
-const productId = document.getElementById("productId").value;
-const review = document.getElementById("reviewText").value;
-const status = document.getElementById("status");
+    if(!productId || !reviewText || rating === 0){
+        alert("Please complete all fields");
+        return;
+    }
 
-if(productId=="" || review=="" || rating==0){
+    db.collection("reviews").add({
 
-status.innerText="Please complete all fields.";
-return;
+        productId: productId,
+        reviewText: reviewText,
+        rating: rating,
+        userEmail: auth.currentUser.email,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+
+    })
+    .then(() => {
+
+        alert("Review submitted successfully");
+
+        document.getElementById("productId").value = "";
+        document.getElementById("reviewText").value = "";
+
+        rating = 0;
+        
+       const stary = document.querySelectorAll("#stars span");
+        stary.forEach(s => s.classList.remove("active"));
+
+    })
+    .catch(error => {
+
+        console.log(error);
+        //alert("Error submitting review");
+
+    });
 
 }
 
-db.collection("reviews").add({
 
-productId: productId,
-reviewText: review,
-rating: rating,
-userEmail: user.email,
-timestamp: firebase.firestore.FieldValue.serverTimestamp()
-
-})
-.then(()=>{
-
-status.innerText="Review submitted successfully!";
-
-document.getElementById("reviewText").value="";
-rating=0;
-stars.forEach(s => s.classList.remove("active"));
-document.getElementById("productId").value="";
-
-})
-.catch(()=>{
-
-status.innerText="Error submitting review";
-
-});
-
-}
-
-
-
+// Logout
 function logout(){
-
-auth.signOut().then(()=>{
-window.location.href="login.html";
-});
-
+    auth.signOut().then(()=>{
+        window.location.href = "login.html";
+    });
 }

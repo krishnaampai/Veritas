@@ -4,19 +4,20 @@ let contract;
 
 const contractAddress = window.env.CONTRACT_ADDRESS;
 
-    const connectBtn = document.getElementById("connectBtn");
-    const addProductBtn = document.getElementById("addProductBtn");
-    const walletAddressDiv = document.getElementById("walletAddress");
-    const verificationStatusDiv = document.getElementById("verificationStatus");
-    const productSection = document.getElementById("productSection");
+const connectBtn = document.getElementById("connectBtn");
+const addProductBtn = document.getElementById("addProductBtn");
+const walletAddressDiv = document.getElementById("walletAddress");
+const verificationStatusDiv = document.getElementById("verificationStatus");
+const productSection = document.getElementById("productSection");
 
-    connectBtn.addEventListener("click", connectWallet);
-    addProductBtn.addEventListener("click", addProduct);
+connectBtn.addEventListener("click", connectWallet);
+addProductBtn.addEventListener("click", addProduct);
 
 
 
 async function connectWallet() 
-{   console.log("Connecting wallet...");
+{
+    console.log("Hello");
 
     if (!window.ethereum) {
         alert("MetaMask not installed");
@@ -29,6 +30,7 @@ async function connectWallet()
 
     const accounts = await web3.eth.getAccounts();
     currentAccount = accounts[0];
+    console.log(currentAccount);
 
     walletAddressDiv.innerText =
         "Connected Wallet: " + currentAccount;
@@ -89,7 +91,8 @@ async function addProduct() {
     }
 }
 
-function generateQR(productId){
+function generateQR(productId)
+{
 
     document.getElementById("qrSection").style.display = "block";
 
@@ -99,7 +102,7 @@ function generateQR(productId){
         width: 200,
         color: {
             dark: "#00e6e6",
-            light: "#000000"
+            light: "#ffffff"
         }
     }, function (error) {
         if (error) console.error(error);

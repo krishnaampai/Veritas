@@ -1,43 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-<meta charset="UTF-8">
-<title>Product Review - Veritas</title>
 
-<link rel="stylesheet" href="Styles/styles.css">
+<meta charset="UTF-8">
+<title>Submit Product Review</title>
+
 <link rel="stylesheet" href="Styles/review.css">
+<link rel="stylesheet" href="Styles/styles.css">
 
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
+<script src="https://unpkg.com/html5-qrcode"></script>
+<script src="scripts/configy.js"></script>
+<script src="scripts/review.js"></script>
 
-<script defer src="scripts/review.js"></script>
 
 </head>
 
 <body>
 
-<header>
-<h1>Product Review</h1>
-<p>Share your experience with the product</p>
-</header>
+<h1 class="portal-title">Submit Product Review</h1>
+<p class="subtitle">Share your experience with this product</p>
 
-<div class="review-wrapper">
+<div class="container">
 
 <div class="review-card">
 
-<div class="form-group">
 <label>Product ID</label>
-<input id="productId" placeholder="Enter Product ID">
+<input type="text" id="productId" placeholder="Enter Product ID">
+
+<div class="qr-options">
+
+<div class="qr-box">
+<h3>Scan QR</h3>
+<p>Use your camera to scan the product QR code</p>
+<button onclick="startCamera()">Start Camera</button>
+<div id="reader" class="reader-box"></div>
 </div>
 
-<div class="form-group">
+<div class="qr-box">
+<h3>Upload QR</h3>
+<p>Upload an image containing the QR code</p>
+<input type="file" id="qrFile" accept="image/*">
+</div>
+
+</div>
+
 <label>Your Review</label>
 <textarea id="reviewText" placeholder="Write your review"></textarea>
-</div>
 
-<div class="form-group">
 <label>Rating</label>
 
 <div class="star-rating" id="stars">
@@ -48,21 +61,16 @@
 <span data-value="5">★</span>
 </div>
 
-</div>
+<button class="submit-btn" onclick="submitReview()">Submit Review</button>
 
-<div class="center">
-<button onclick="submitReview()">Submit Review</button>
-</div>
+<p id="status"></p>
 
-<div class="center">
-<button onclick="logout()">Logout</button>
-</div>
-
-<div id="status" class="status"></div>
+<button class="logout-btn" onclick="logout()">Logout</button>
 
 </div>
 
 </div>
+
 
 </body>
 </html>

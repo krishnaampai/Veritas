@@ -1,2 +1,3 @@
 blockchain/build/truffle compile
 config.js
+scripts/configy.js
