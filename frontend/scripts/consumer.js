@@ -1,7 +1,7 @@
 let web3;
 let contract;
 
-const contractAddress = window.ENV.CONTRACT_ADDRESS;
+const contractAddress = window.env.CONTRACT_ADDRESS;
 console.log(window.ENV);
 
 const verifyBtn = document.getElementById("verify");

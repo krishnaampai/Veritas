@@ -17806,12 +17806,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x5b9310F0474aa1DCb819b7E8a4E19D93F8AfB1Cc",
-      "transactionHash": "0x656a8ac761f93c9e21f8ae472d9cfa1fa656f557d05fa24854aad6999df8f05c"
+      "address": "0x22422fe8DAD0185e496C854d7D2cd86D2B22Fffa",
+      "transactionHash": "0x6d636c838b605953c4780e30ea80aa987fcedf8506119430c8d19ed62c8365e7"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2026-03-05T16:25:50.021Z",
+  "updatedAt": "2026-03-06T01:55:54.547Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
