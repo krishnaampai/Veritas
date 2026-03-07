@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veritas | View Inventory</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="Styles/styles.css">
+    <style>
+        /* Specific styles for the product list result */
+        .search-section {
+            max-width: 500px;
+            margin: 20px auto;
+            text-align: center;
+        }
+        .inventory-list {
+            max-width: 800px;
+            margin: 30px auto;
+            display: grid;
+            gap: 20px;
+        }
+        .product-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(79, 172, 254, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+        .product-details h3 { color: #00e6e6; margin: 0 0 10px 0; }
+        .product-details p { color: #aaa; margin: 5px 0; font-size: 14px; }
+        .transfer-btn {
+            background: linear-gradient(45deg, #00e6e6, #4facfe);
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>VERITAS</h1>
+    <p>Product Inventory Search</p>
+</header>
+
+<div class="container" style="display: block;">
+    <div class="card search-section">
+        <i class="fas fa-wallet" style="font-size: 40px; color: #00e6e6;"></i>
+        <h2>Search by Wallet</h2>
+        <input type="text" id="searchWallet" placeholder="Enter Wallet Address (0x...)" 
+               style="width: 90%; padding: 12px; margin: 20px 0; border-radius: 10px; border: 1px solid #4facfe; background: rgba(0,0,0,0.3); color: white;">
+        <button onclick="fetchInventory()" class="transfer-btn" style="width: 100%;">View Products</button>
+    </div>
+
+    <div id="status" style="text-align: center; margin-top: 20px; color: #4facfe;"></div>
+    <div id="inventoryContainer" class="inventory-list">
+        </div>
+</div>
+
+<footer style="margin-top: 50px;">
+    <a href="seller.html" style="color: #aaa; text-decoration: none;"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
+    <p>© 2026 Veritas | Built for Trust & Transparency</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.8.1/web3.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
