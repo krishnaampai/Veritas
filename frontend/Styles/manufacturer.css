@@ -59,3 +59,44 @@ button {
 .hidden {
     display: none;
 }
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.product-card {
+    padding: 20px;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(79,172,254,0.3);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    min-height: 220px;
+}
+
+.product-card:hover {
+    transform: translateY(-4px);
+}
+
+.card-buttons {
+    margin-top: auto;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.transfer-btn {
+    background: #4facfe;
+   
+}
+
+.timeline-btn {
+    background: #00e6e6;
+    
+}

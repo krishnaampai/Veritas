@@ -147,4 +147,21 @@ function transferOwnership(
         Manufacturer memory m = manufacturers[wallet];
         return (m.name, m.license, m.verified);
     }
+
+    function getProduct(uint256 id)
+        public
+        view
+        returns(address manufacturer, address owner, string memory metadata)
+        {
+            Product memory p = products[id];
+            return (p.manufacturer, p.currentOwner, p.metadata);
+        }
+
+    function getProductsByOwner(address owner) 
+        public 
+        view 
+        returns (uint256[] memory) 
+    {
+        return productList[owner];
+    }
 }
