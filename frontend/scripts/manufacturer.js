@@ -2,7 +2,7 @@ let currentAccount = null;
 let web3;
 let contract;
 
-const contractAddress = window.env.CONTRACT_ADDRESS;
+const contractAddress = window.ENV.CONTRACT_ADDRESS;
 
 const connectBtn = document.getElementById("connectBtn");
 const addProductBtn = document.getElementById("addProductBtn");
@@ -44,10 +44,11 @@ async function connectWallet()
         contractAddress
     );
 
-    verificationStatusDiv.innerText =
-        "Status: Connected (Verification skipped for now)";
+    
 
     productSection.classList.remove("hidden");
+
+    await loadMyProducts();
 }
 
 async function addProduct() {
@@ -77,6 +78,8 @@ async function addProduct() {
 
         alert("✅ Product Added to Blockchain!");
         generateQR(serialNumber);
+        console.log("Generating QR for:", serialNumber);
+        await loadMyProducts();
         console.log("Now verifying from blockchain...");
 
         const result = await contract.methods
@@ -90,22 +93,73 @@ async function addProduct() {
         alert("Transaction failed");
     }
 }
+function generateQR(productId) {
 
-function generateQR(productId)
-{
-
-    document.getElementById("qrSection").style.display = "block";
-
+    const qrSection = document.getElementById("qrSection");
     const canvas = document.getElementById("qrCanvas");
 
-    QRCode.toCanvas(canvas, productId.toString(), {
-        width: 200,
+    const qrData = productId.toString();   
+
+    console.log("QR content:", qrData, "type:", typeof qrData); 
+
+    qrSection.style.display = "block";
+
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    QRCode.toCanvas(canvas, qrData, {
+        width: 350,
+        margin: 4,
         color: {
-            dark: "#00e6e6",
+            dark: "#000000",
             light: "#ffffff"
         }
     }, function (error) {
         if (error) console.error(error);
     });
+}
 
+async function loadMyProducts() {
+
+    const products = await contract.methods
+        .getProductsByOwner(currentAccount)
+        .call();
+
+    const grid = document.getElementById("productGrid");
+    grid.innerHTML = "";
+
+    if (products.length === 0) {
+        grid.innerHTML = "<p>No products yet</p>";
+        return;
+    }
+
+    for (let id of products) {
+
+        const product = await contract.methods
+            .getProduct(id)
+            .call();
+
+        const card = document.createElement("div");
+        card.classList.add("product-card");
+
+        card.innerHTML = `
+            <h3>Product #${id}</h3>
+
+            <p>${product.metadata}</p>
+
+            <div class="card-buttons">
+
+                <button class="transfer-btn" data-id="${id}">
+                    Transfer Ownership
+                </button>
+
+                <button class="timeline-btn" onclick="showProduct(${id})">
+                    View Timeline
+                </button>
+
+            </div>
+        `;
+
+        grid.appendChild(card);
+    }
 }
