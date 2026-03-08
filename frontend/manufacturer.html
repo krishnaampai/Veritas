@@ -18,7 +18,7 @@
 
 <div class="manufacturer-container">
 
-    <!-- Wallet Section -->
+    <!-- WALLET -->
     <div class="wallet-section">
         <button id="connectBtn">
             <i class="fab fa-ethereum"></i> Connect MetaMask
@@ -30,14 +30,24 @@
 
         <div id="verificationStatus" class="status"></div>
     </div>
-    <h2>Ownership Timeline</h2>
 
-    <div id="timeline"></div>
+    <!-- PRODUCTS DASHBOARD -->
+    <section class="products-section">
 
-    <!-- Product Section -->
-    <div id="productSection" class="product-section hidden">
+        <h2>Your Products</h2>
 
-        <h3>Product Details</h3>
+        <div id="productGrid" class="product-grid"></div>
+        <section class="timeline-section">
+            <h2>Ownership Timeline</h2>
+            <div id="timeline"></div>
+        </section>
+
+    </section>
+
+    <!-- ADD PRODUCT -->
+    <section id="productSection" class="product-section hidden">
+
+        <h2>Add Product</h2>
 
         <div class="form-group">
             <label>Product Name</label>
@@ -51,23 +61,24 @@
 
         <div class="form-group">
             <label>Description</label>
-            <textarea id="description" rows="3"></textarea>
+            <textarea id="description"></textarea>
         </div>
 
         <div class="center">
             <button id="addProductBtn">
-                Add Product to Blockchain
+                Add Product
             </button>
         </div>
-        <div id="qrSection" style="margin-top:20px; display:none;">
+
+        <div id="qrSection" style="display:none;">
             <h3>Product QR Code</h3>
-            <canvas id="qrCanvas"></canvas>
+           <canvas id="qrCanvas" width="350" height="350"></canvas>
         </div>
 
-    </div>
+    </section>
 
 </div>
-<script src="../config.example.js"></script>
+<script src="../config.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
 <script src="../../blockchain/build/contracts/Veritas.json" type="application/json" id="contractData"></script>
 <script src="../frontend/scripts/product.js"></script>

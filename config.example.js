@@ -1,3 +1,3 @@
-window.env = {
-  CONTRACT_ADDRESS: "0x22422fe8DAD0185e496C854d7D2cd86D2B22Fffa"
+window.ENV = {
+  CONTRACT_ADDRESS: ""
 };
