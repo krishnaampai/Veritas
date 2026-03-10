@@ -32,14 +32,27 @@
     </div>
 
     <!-- PRODUCTS DASHBOARD -->
-    <section class="products-section">
+    <section id="products-section"  class="products-section hidden">
 
         <h2>Your Products</h2>
 
         <div id="productGrid" class="product-grid"></div>
         <section class="timeline-section">
-            <h2>Ownership Timeline</h2>
+            <h2 id="timelineTitle">Ownership Timeline</h2>
             <div id="timeline"></div>
+        </section>
+        <section id="reviewsSection" class = "reviewSection hidden">
+
+            <h2>Customer Reviews</h2>
+
+            <div id="ratingSummary">
+                <span id="overallStars"></span>
+                <span id="avgRating"></span>
+                (<span id="reviewCount"></span> reviews)
+            </div>
+
+            <div id="reviewsList"></div>
+
         </section>
 
     </section>
@@ -77,6 +90,20 @@
 
     </section>
 
+    <section id="reviewsSection" class="hidden">
+
+        <h2 id="reviewsTitle">Product Reviews</h2>
+
+        <div class="rating-summary">
+            <span id="overallStars"></span>
+            <span id="avgRating"></span>
+            (<span id="reviewCount"></span> reviews)
+        </div>
+
+        <div id="reviewsList"></div>
+
+    </section>
+
 </div>
 <script src="../config.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
@@ -84,6 +111,11 @@
 <script src="../frontend/scripts/product.js"></script>
 <script src="https://raw.githubusercontent.com/mebjas/html5-qrcode/master/minified/html5-qrcode.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.1/qrcode.min.js"></script> 
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+<script src="../firebaseauth.js"></script>
 <script defer src="../frontend/scripts/manufacturer.js"></script>
 </body>
 </html>
