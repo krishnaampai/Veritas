@@ -5,7 +5,7 @@ async function loadOwnershipHistory(productId) {
         .getProductHistory(productId)
         .call();
 
-    renderTimeline(history);
+    renderTimeline(history, productId);
 }
 // const dummyHistory = [
 //   {
@@ -47,10 +47,12 @@ function formatTime(ts) {
   return new Date(ts * 1000).toLocaleString();
 }
 
-async function renderTimeline(history){
+async function renderTimeline(history,productId){
 
     const timeline = document.getElementById("timeline");
     timeline.innerHTML = "";
+    document.getElementById("timelineTitle").innerText =
+    "Ownership Timeline for Product #" + productId;
 
     const ownerCache = {};
 
@@ -95,7 +97,8 @@ async function renderTimeline(history){
         const item = document.createElement("div");
         item.className = "timeline-item";
 
-        item.innerHTML = `
+        item.innerHTML = `<div>
+            <h3> Product No.${productId}</h3>
             <div class="timeline-dot"></div>
 
             <div class="timeline-content">
@@ -103,7 +106,7 @@ async function renderTimeline(history){
                 <div class="wallet">${name}</div>
                 <div class="wallet">${shorten(owner)}</div>
                 <div class="time">${formatTime(record.timestamp)}</div>
-            </div>
+            </div></div>
         `;
 
         timeline.appendChild(item);
@@ -127,4 +130,5 @@ async function showProduct(productId){
 
     // load timeline
     loadOwnershipHistory(productId);
+    loadReviews(productId);
 }
