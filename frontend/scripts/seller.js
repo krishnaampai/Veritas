@@ -37,7 +37,7 @@ async function connectWallet(){
     loadMyProducts();
 }
 
-a
+
 async function loadMyProducts() {
 
     const products = await contract.methods
@@ -68,7 +68,7 @@ async function loadMyProducts() {
 
             <div class="card-buttons">
 
-                <button class="transfer-btn" data-id="${id}">
+                <button class="transfer-btn" onclick="transfer(${id})">
                     Transfer Ownership
                 </button>
 

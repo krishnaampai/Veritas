@@ -81,7 +81,7 @@ async function renderTimeline(history,productId){
         const owner = record.owner;
 
         let name = "Owner";
-        let role = "Owner";
+        let role = "Seller";
 
         const details = ownerCache[owner];
 
@@ -130,5 +130,4 @@ async function showProduct(productId){
 
     // load timeline
     loadOwnershipHistory(productId);
-    loadReviews(productId);
 }

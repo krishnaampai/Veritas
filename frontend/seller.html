@@ -3,8 +3,8 @@
 <head>
     <title>Seller - Veritas</title>
 
-    <link rel="stylesheet" href="Styles/styles.css">
-    <link rel="stylesheet" href="Styles/manufacturer.css">
+    <link rel="stylesheet" href="./Styles/seller.css">
+    <link rel="stylesheet" href="./Styles/manufacturer.css">
 
 </head>
 
@@ -21,14 +21,17 @@
         <h2>Your Products</h2>
 
         <div id="productGrid" class="product-grid"></div>
+        <div id="transferSection"></div>
         <section class="timeline-section">
-            <h2>Ownership Timeline</h2>
+            <h2 id="timelineTitle">Ownership Timeline</h2>
             <div id="timeline"></div>
         </section>
 
     </section>
 <script src="../config.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
+<script defer src="./scripts/ownership.js"></script>
+<script defer src="scripts/product.js"></script>
 <script defer src="scripts/seller.js"></script>
 
 </body>

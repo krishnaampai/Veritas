@@ -1,11 +1,95 @@
-#productGrid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
-    margin:40px;
+
+/* Connect wallet button */
+#connectBtn{
+    background: linear-gradient(135deg,#00c6ff,#0072ff);
+    border: none;
+    padding: 12px 22px;
+    border-radius: 8px;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.25s;
 }
 
-#productGrid div{
-    background:#111;
-    border-radius:10px;
+#connectBtn:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(0,114,255,0.5);
+}
+
+/* Wallet address display */
+#walletAddress{
+    margin-top: 15px;
+    font-size: 14px;
+    color: #cccccc;
+}
+
+/* Products section */
+.products-section{
+    margin-top: 40px;
+}
+
+/* Product grid layout */
+.product-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Product card */
+.product-card{
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    text-align: left;
+    transition: 0.2s;
+}
+
+.product-card:hover{
+    transform: translateY(-4px);
+}
+
+/* Product headings */
+.product-card h3{
+    margin-bottom: 10px;
+}
+
+/* Timeline section */
+.timeline-section{
+    margin-top: 40px;
+}
+
+/* Timeline container */
+#timeline{
+    margin-top: 15px;
+    padding: 20px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Timeline item */
+.timeline-item{
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.timeline-item:last-child{
+    border-bottom: none;
+}
+
+/* Timeline text */
+.timeline-item p{
+    margin: 3px 0;
+    font-size: 14px;
+    color: #dddddd;
+}
+
+/* Section titles */
+h2{
+    margin-top: 20px;
+    font-size: 22px;
 }

@@ -13,6 +13,9 @@ contract Veritas {
 
     mapping(address => Manufacturer) public manufacturers;
 
+    mapping(string => address) public seller;
+
+
     constructor() {
         manufacturers[0x0e0Be0fcF62E3640E929dE169dA648C8cDC36365] =
             Manufacturer("Nike Pvt Ltd", "LIC12345", true);
@@ -25,6 +28,10 @@ contract Veritas {
 
          manufacturers[0xF0188CCf02342Ca26FE055Fe0faCd57338e0324e] =
             Manufacturer("Casio Pvt Ltd", "LIC1679", true);
+
+            seller["Ashok"]=0x9579B2241AEEfF56B774437Bb7a1739d26Aced20;
+            seller["Ravi"]=0x1f49268bf903F0b5174e1D57ad39A1fAa6be68Ac;
+            seller["Suresh"]=0x68AAD3dD7245367D404e08A43E38Fc4cd8567687;
 
         
     }
@@ -86,6 +93,7 @@ function transferOwnership(
     require(_newOwner != address(0), "Invalid new owner");
 
     products[_productId].currentOwner = _newOwner;
+    productList[_newOwner].push(_productId);
     emit OwnershipTransferred(_productId, msg.sender, _newOwner);
 
     ownershipHistory[_productId].push(
@@ -163,5 +171,9 @@ function transferOwnership(
         returns (uint256[] memory) 
     {
         return productList[owner];
+    }
+
+    function getSeller(string memory name) public view returns (address) {
+        return seller[name];
     }
 }

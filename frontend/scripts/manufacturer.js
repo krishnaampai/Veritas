@@ -257,7 +257,7 @@ async function loadMyProducts() {
 
         <div class="card-buttons">
 
-            <button class="transfer-btn" data-id="${id}">
+            <button class="transfer-btn" onclick="transfer(${id})">
                 Transfer Ownership
             </button>
 
