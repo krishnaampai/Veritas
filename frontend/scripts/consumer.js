@@ -131,3 +131,58 @@ fileInput.addEventListener("change", e => {
         });
 
 });
+
+document.getElementById("searchBtn").addEventListener("click", searchProducts);
+
+async function searchProducts() {
+    const query = document.getElementById("searchInput").value.toLowerCase();
+    const resultsDiv = document.getElementById("searchResults");
+    const section = document.getElementById("searchResultsSection");
+
+    if (!query) {
+        alert("Enter something to search");
+        return;
+    }
+
+    resultsDiv.innerHTML = "Searching...";
+    section.style.display = "block";
+
+    try {
+        const ids = await contract.methods.getAllProductIds().call();
+
+        let resultsHTML = "";
+
+        for (let id of ids) {
+            const product = await contract.methods.getProduct(id).call();
+            const words = query.split(" ");
+            const matches = words.every(word => product.metadata.includes(word));
+
+            if (matches) {
+                resultsHTML += `
+                    <div class="search-card" onclick="selectProduct(${id})">
+                        <p><strong>${product.metadata}</strong></p>
+                        <p>ID: ${id}</p>
+                    </div>
+                `;
+            }
+        }
+
+        resultsDiv.innerHTML = resultsHTML || "No products found.";
+
+    } catch (err) {
+        console.error(err);
+        resultsDiv.innerHTML = "Error searching products.";
+    }
+}
+
+function selectProduct(id) {
+    document.getElementById("serialInput").value = id;
+
+    // Optional smooth scroll
+    document.getElementById("serialInput").scrollIntoView({
+        behavior: "smooth"
+    });
+
+    // Optional auto verify (recommended 🔥)
+    verifyProduct();
+}

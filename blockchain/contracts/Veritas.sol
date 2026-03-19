@@ -59,6 +59,7 @@ contract Veritas {
 
     mapping(uint256 => OwnershipRecord[]) internal ownershipHistory;
     mapping(address => uint256[]) internal productList;
+    uint256[] public allProductIds;
 
 
     function addProduct(
@@ -74,6 +75,7 @@ contract Veritas {
             metadata: _metadata,
             exists: true
         });
+        allProductIds.push(_productId);
         emit ProductAdded(_productId, msg.sender);
         productList[msg.sender].push(_productId);
 
@@ -83,6 +85,11 @@ contract Veritas {
         timestamp: block.timestamp
         })
         );
+        
+    }
+
+    function getAllProductIds() public view returns (uint256[] memory) {
+        return allProductIds;
     }
 
 

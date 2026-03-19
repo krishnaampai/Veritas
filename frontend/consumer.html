@@ -17,43 +17,52 @@
 </header>
 
 <div class="consumer-container">
+        <!-- SEARCH BAR -->
+    <div class="search-container">
+        <input id="searchInput" placeholder="Search products (e.g. bag)">
+        <button id="searchBtn">Search</button>
+    </div>
+
+    <!-- SEARCH RESULTS -->
+    <div id="searchResultsSection" style="display:none;" class="results-wrapper">
+        <h3>Search Results</h3>
+        <div id="searchResults" class="results-grid"></div>
+    </div>
 
     <div class="verify-section">
+        <h3>Verify Products</h3>
         <div class="verify-options">
 
-    <!-- CAMERA -->
-    <div class="option-card">
-        <h3>📷 Scan QR</h3>
-        <p class="option-desc">Use your camera to scan the product QR code</p>
-        <button id="startScan">Start Camera</button>
-        <div id="reader" class="reader-box"></div>
-    </div>
+        <!-- CAMERA -->
+        <div class="option-card">
+            <h3>📷 Scan QR</h3>
+            <p class="option-desc">Use your camera to scan the product QR code</p>
+            <button id="startScan">Start Camera</button>
+            <div id="reader" class="reader-box"></div>
+        </div>
 
-    <!-- UPLOAD -->
-    <div class="option-card">
-        <h3>🖼 Upload QR</h3>
-        <p class="option-desc">Upload an image containing the QR code</p>
-        <input type="file" id="qr-input-file" accept="image/*">
-    </div>
+        <!-- UPLOAD -->
+        <div class="option-card">
+            <h3>🖼 Upload QR</h3>
+            <p class="option-desc">Upload an image containing the QR code</p>
+            <input type="file" id="qr-input-file" accept="image/*">
+        </div>
 
-    <!-- MANUAL -->
-    <div class="option-card">
-        <h3>🔢 Enter Product ID</h3>
-        <p class="option-desc">Enter the product ID manually</p>
-        <input id="serialInput" placeholder="Enter Product ID">
-        <button id="verify">Verify Product</button>
-    </div>
+        <!-- MANUAL -->
+        <div class="option-card">
+            <h3>🔢 Enter Product ID</h3>
+            <p class="option-desc">Enter the product ID manually</p>
+            <input id="serialInput" placeholder="Enter Product ID">
+            <button id="verify">Verify Product</button>
+        </div>
 
-</div>
+        </div>
 
-<div id="result" class="status"></div>
+        <div id="result" class="status"></div>
 
-<h3 id="timelineTitle" style="display:none;">Ownership History</h3>
-<div id="timeline"></div>
-<div id="result" class="status"></div>
+        <h3 id="timelineTitle" style="display:none;">Ownership History</h3>
+        <div id="timeline"></div>
 
-<h3 id="timelineTitle" style="display:none;">Ownership History</h3>
-<div id="timeline"></div>
 
     </div>
 
