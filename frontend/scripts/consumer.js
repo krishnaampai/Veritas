@@ -1,3 +1,8 @@
+firebase.initializeApp(window.firebaseConfig);
+
+const auth = firebase.auth();
+const db = firebase.firestore();
+
 let web3;
 let contract;
 
@@ -134,6 +139,21 @@ fileInput.addEventListener("change", e => {
 
 document.getElementById("searchBtn").addEventListener("click", searchProducts);
 
+function generateStars(rating){
+
+    let stars = "";
+
+    for(let i=1;i<=5;i++){
+
+        if(i <= Math.round(rating))
+            stars += "⭐";
+        else
+            stars += " ";
+    }
+
+    return stars;
+}
+
 async function searchProducts() {
     const query = document.getElementById("searchInput").value.toLowerCase();
     const resultsDiv = document.getElementById("searchResults");
@@ -158,10 +178,29 @@ async function searchProducts() {
             const matches = words.every(word => product.metadata.includes(word));
 
             if (matches) {
+                const reviewSnapshot = await db
+                .collection("reviews")
+                .where("productId","==", String(id))
+                .get();
+
+                const reviews = reviewSnapshot.docs.map(doc => doc.data());
+
+                let avgRating = 0;
+
+                if(reviews.length > 0){
+                    const total = reviews.reduce((sum,r)=> sum + Number(r.rating),0);
+                    avgRating = (total / reviews.length).toFixed(1);
+                }
                 resultsHTML += `
                     <div class="search-card" onclick="selectProduct(${id})">
                         <p><strong>${product.metadata}</strong></p>
                         <p>ID: ${id}</p>
+                        <div class="product-rating">
+                            <span class="stars">${generateStars(avgRating)}</span>
+                            <span class="rating-text">
+                                ${reviews.length ? avgRating + " (" + reviews.length + ")" : "No rating yet"}
+                            </span>
+                        </div>
                     </div>
                 `;
             }
