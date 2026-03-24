@@ -175,7 +175,7 @@ async function searchProducts() {
         for (let id of ids) {
             const product = await contract.methods.getProduct(id).call();
             const words = query.split(" ");
-            const matches = words.every(word => product.metadata.includes(word));
+            const matches = words.every(word => product.metadata.toLowerCase().includes(word));
 
             if (matches) {
                 const reviewSnapshot = await db

@@ -1,0 +1,76 @@
+/* ADMIN PAGE */
+
+.admin-container {
+    max-width: 700px;
+    margin: auto;
+    padding: 40px;
+}
+
+/* FORM CARD */
+.admin-card {
+    padding: 35px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(79, 172, 254, 0.3);
+    transition: 0.4s ease;
+}
+
+/* hover effect */
+.admin-card:hover {
+    box-shadow: 0 0 25px rgba(79, 172, 254, 0.4);
+}
+
+/* heading */
+.admin-card h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    background: linear-gradient(90deg, #00e6e6, #4facfe);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}
+
+/* INPUTS */
+.admin-card input {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    border: none;
+    background: rgba(255,255,255,0.07);
+    color: white;
+    outline: none;
+}
+
+/* button */
+.admin-card button {
+    width: 100%;
+    padding: 14px;
+    border-radius: 30px;
+    border: none;
+    background: linear-gradient(90deg, #00e6e6, #4facfe);
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.admin-card button:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 15px rgba(79,172,254,0.6);
+}
+
+/* SUCCESS / ERROR TEXT */
+.status {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.success {
+    color: #00ffcc;
+}
+
+.error {
+    color: #ff4d4d;
+}
