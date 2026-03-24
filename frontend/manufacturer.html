@@ -13,32 +13,14 @@
     <h2 class="logo">Veritas</h2>
 
     <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        
+       <li><a href="index.html">Home</a></li>
         <li><a href="consumer.html">Consumer</a></li>
         <li><a href="seller.html">Seller</a></li>
-        
-        <li id="adminLink" style="display:none;">
-            <a href="admin.html">Admin</a>
-        </li>
+        <a href="manufacturer.html" class="active">Manufacturer</a>
     </ul>
 </nav>
 
-<script>
-const adminWallet = "0x123..."; // PUT YOUR ADMIN WALLET HERE
 
-async function checkAdmin() {
-    if (window.ethereum) {
-        const accounts = await ethereum.request({ method: "eth_accounts" });
-
-        if (accounts.length > 0 && accounts[0].toLowerCase() === adminWallet.toLowerCase()) {
-            document.getElementById("adminLink").style.display = "block";
-        }
-    }
-}
-
-checkAdmin();
-</script>
 
 <header>
     <h1>Manufacturer Portal</h1>

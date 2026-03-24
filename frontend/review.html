@@ -20,21 +20,7 @@
 </head>
 
 
-<script>
-const adminWallet = "0x123..."; // PUT YOUR ADMIN WALLET HERE
 
-async function checkAdmin() {
-    if (window.ethereum) {
-        const accounts = await ethereum.request({ method: "eth_accounts" });
-
-        if (accounts.length > 0 && accounts[0].toLowerCase() === adminWallet.toLowerCase()) {
-            document.getElementById("adminLink").style.display = "block";
-        }
-    }
-}
-
-checkAdmin();
-</script>
 
 <h1 class="portal-title">Submit Product Review</h1>
 <p class="subtitle">Share your experience with this product</p>

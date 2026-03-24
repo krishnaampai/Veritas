@@ -222,3 +222,8 @@ footer {
     margin: 40px auto;
     text-align: center;
 }
+/* ACTIVE NAV LINK */
+.nav-links a.active {
+    text-decoration: underline;
+    font-weight: bold;
+}
