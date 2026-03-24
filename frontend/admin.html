@@ -1,9 +1,63 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Admin</title>
+    <title>Admin Panel</title>
+
+    <link rel="stylesheet" href="./Styles/styles.css">
+    <link rel="stylesheet" href="./Styles/admin.css">
 </head>
-<body style="background:black; color:white; text-align:center;">
-    <h1>Admin Page</h1>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <h1>ADMIN PANEL</h1>
+        <p>Manage manufacturers on blockchain</p>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <div class="admin-container">
+
+        <!-- FORM CARD -->
+        <div class="admin-card">
+            <h2>Add Manufacturer</h2>
+
+            <form id="manufacturerForm">
+
+                <input 
+                    type="text" 
+                    id="wallet" 
+                    placeholder="Wallet Address (0x...)" 
+                    required
+                >
+
+                <input 
+                    type="text" 
+                    id="name" 
+                    placeholder="Manufacturer Name" 
+                    required
+                >
+
+                <input 
+                    type="text" 
+                    id="license" 
+                    placeholder="License Number" 
+                    required
+                >
+
+                <button type="submit">Add Manufacturer</button>
+            </form>
+
+            <!-- STATUS MESSAGE -->
+            <div id="statusfield" class="status"></div>
+
+        </div>
+
+    </div>
+    
+    <script src="../config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.8.2/dist/web3.min.js"></script>
+    <script src="./scripts/admin.js"></script>
+
 </body>
 </html>

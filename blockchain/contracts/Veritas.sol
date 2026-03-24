@@ -6,17 +6,26 @@ contract Veritas {
     //  Manufacturer struct and mapping
 
     struct Manufacturer {
+        address wallet;
         string name;
         string license;
         bool verified;
     }
 
-    mapping(address => Manufacturer) public manufacturers;
 
+    constructor() {
+        admins[0x9B90b2D93540b0E8Ed0008f002Bda0EbA30A06b8] = "Admin1";
+        seller["Ashok"]=0x9579B2241AEEfF56B774437Bb7a1739d26Aced20;
+        seller["Ravi"]=0x1f49268bf903F0b5174e1D57ad39A1fAa6be68Ac;
+        seller["Suresh"]=0x68AAD3dD7245367D404e08A43E38Fc4cd8567687;
+    }
+
+    mapping(address => Manufacturer) public manufacturers;
+    mapping(address => string) public admins;
     mapping(string => address) public seller;
 
 
-    constructor() {
+    /*constructor() {
         manufacturers[0x0e0Be0fcF62E3640E929dE169dA648C8cDC36365] =
             Manufacturer("Nike Pvt Ltd", "LIC12345", true);
 
@@ -29,12 +38,8 @@ contract Veritas {
          manufacturers[0xF0188CCf02342Ca26FE055Fe0faCd57338e0324e] =
             Manufacturer("Casio Pvt Ltd", "LIC1679", true);
 
-            seller["Ashok"]=0x9579B2241AEEfF56B774437Bb7a1739d26Aced20;
-            seller["Ravi"]=0x1f49268bf903F0b5174e1D57ad39A1fAa6be68Ac;
-            seller["Suresh"]=0x68AAD3dD7245367D404e08A43E38Fc4cd8567687;
-
         
-    }
+    }*/
 
     modifier onlyVerifiedManufacturer() {
         require(manufacturers[msg.sender].verified, "Not a verified manufacturer");
@@ -87,6 +92,23 @@ contract Veritas {
         );
         
     }
+    
+    function addManufacturer(
+        address _wallet,
+        string memory _name,
+        string memory _license
+    ) public {
+        require(bytes(admins[msg.sender]).length > 0, "Only admins can add manufacturers");
+        require(!manufacturers[_wallet].verified, "Manufacturer already exists");
+
+        manufacturers[_wallet] = Manufacturer({
+            wallet: _wallet,
+            name: _name,
+            license: _license,
+            verified: true
+        });
+    }
+    
 
     function getAllProductIds() public view returns (uint256[] memory) {
         return allProductIds;
