@@ -1,15 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Seller - Veritas</title>
 
+    <!-- IMPORTANT: styles.css added -->
+    <link rel="stylesheet" href="./Styles/styles.css">
     <link rel="stylesheet" href="./Styles/seller.css">
     <link rel="stylesheet" href="./Styles/manufacturer.css">
-
 </head>
 
-<body style="background:black; color:white; text-align:center;">
+<body>
 
+<!-- NAVBAR -->
+<nav class="navbar">
+    <h2 class="logo">Veritas</h2>
+
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="consumer.html">Consumer</a></li>
+        <a href="seller.html" class="active">Seller</a>
+        <li><a href="manufacturer.html">Manufacturer</a></li>
+    </ul>
+</nav>
+
+<!-- PAGE CONTENT -->
 <h1>Seller Portal</h1>
 
 <button id="connectBtn">Connect MetaMask</button>
@@ -18,16 +33,19 @@
 
 <section class="products-section">
 
-        <h2>Your Products</h2>
+    <h2>Your Products</h2>
 
-        <div id="productGrid" class="product-grid"></div>
-        <div id="transferSection"></div>
-        <section class="timeline-section">
-            <h2 id="timelineTitle">Ownership Timeline</h2>
-            <div id="timeline"></div>
-        </section>
+    <div id="productGrid" class="product-grid"></div>
+    <div id="transferSection"></div>
 
+    <section class="timeline-section">
+        <h2 id="timelineTitle">Ownership Timeline</h2>
+        <div id="timeline"></div>
     </section>
+
+</section>
+
+<!-- SCRIPTS -->
 <script src="../config.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
 <script defer src="./scripts/ownership.js"></script>
@@ -35,4 +53,4 @@
 <script defer src="scripts/seller.js"></script>
 
 </body>
-</html>
+</html> 
