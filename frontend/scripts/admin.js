@@ -33,6 +33,10 @@ async function init() {
     } else {
         alert("Please install MetaMask");
     }
+        window.ethereum.on('accountsChanged', (accounts) => {
+        account = accounts[0];
+        console.log("Account changed:", account);
+    });
 }
 
 init();
@@ -40,6 +44,13 @@ init();
 
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
+
+    const accounts = await window.ethereum.request({
+        method: "eth_requestAccounts"
+    });
+    account = accounts[0];
+
+    console.log("Using account:", account);
 
     const wallet = document.getElementById("wallet").value.trim();
     const name = document.getElementById("name").value.trim();

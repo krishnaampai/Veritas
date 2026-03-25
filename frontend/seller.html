@@ -1,22 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Seller - Veritas</title>
+    <meta charset="UTF-8">
+    <title>Manufacturer - Veritas</title>
 
-    <link rel="stylesheet" href="./Styles/seller.css">
-    <link rel="stylesheet" href="./Styles/manufacturer.css">
-
+    <link rel="stylesheet" href="Styles/manufacturer.css">
+    <link rel="stylesheet" href="Styles/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
-<body style="background:black; color:white; text-align:center;">
+<body>
 
-<h1>Seller Portal</h1>
+<header>
+    <h1>Seller Portal</h1>
+</header>
 
-<button id="connectBtn">Connect MetaMask</button>
+<div class="manufacturer-container">
 
-<div id="walletAddress"></div>
+    <!-- WALLET -->
+    <div class="wallet-section">
+        <button id="connectBtn">
+            <i class="fab fa-ethereum"></i> Connect MetaMask
+        </button>
 
-<section class="products-section">
+        <div id="walletAddress" class="status">
+            Wallet not connected
+        </div>
+
+        <div id="verificationStatus" class="status"></div>
+    </div>
+
+    <!-- PRODUCTS DASHBOARD -->
+    <section id="products-section"  class="products-section hidden">
 
         <h2>Your Products</h2>
 
@@ -26,13 +41,50 @@
             <h2 id="timelineTitle">Ownership Timeline</h2>
             <div id="timeline"></div>
         </section>
+        <section id="reviewsSection" class = "reviewSection hidden">
+
+            <h2>Customer Reviews</h2>
+
+            <div id="ratingSummary">
+                <span id="overallStars"></span>
+                <span id="avgRating"></span>
+                (<span id="reviewCount"></span> reviews)
+            </div>
+
+            <div id="reviewsList"></div>
+
+        </section>
 
     </section>
+
+
+    <section id="reviewsSection" class="hidden">
+
+        <h2 id="reviewsTitle">Product Reviews</h2>
+
+        <div class="rating-summary">
+            <span id="overallStars"></span>
+            <span id="avgRating"></span>
+            (<span id="reviewCount"></span> reviews)
+        </div>
+
+        <div id="reviewsList"></div>
+
+    </section>
+
+</div>
 <script src="../config.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
-<script defer src="./scripts/ownership.js"></script>
-<script defer src="scripts/product.js"></script>
-<script defer src="scripts/seller.js"></script>
+<script src="../../blockchain/build/contracts/Veritas.json" type="application/json" id="contractData"></script>
+<script src="../frontend/scripts/product.js"></script>
+<script src="https://raw.githubusercontent.com/mebjas/html5-qrcode/master/minified/html5-qrcode.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.1/qrcode.min.js"></script> 
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 
+<script src="../firebaseauth.js"></script>
+<script src="../frontend/scripts/ownership.js"></script>
+<script defer src="../frontend/scripts/seller.js"></script>
 </body>
 </html>
