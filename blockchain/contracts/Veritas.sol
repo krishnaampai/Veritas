@@ -14,12 +14,13 @@ contract Veritas {
 
 
     constructor() {
-        admins[0xE93Ae5b48474E823b7464d30532BfdDC903D8f30] = "Admin1";
+        // admins[0xE93Ae5b48474E823b7464d30532BfdDC903D8f30] = "Admin1";
         admins[0xE93Ae5b48474E823b7464d30532BfdDC903D8f30] = "Admin2";
         seller["Ashok"]=0x9579B2241AEEfF56B774437Bb7a1739d26Aced20;
         seller["Ravi"]=0x1f49268bf903F0b5174e1D57ad39A1fAa6be68Ac;
         seller["Suresh"]=0x68AAD3dD7245367D404e08A43E38Fc4cd8567687;
         seller["Max"]=0xFC42861a89EB8caDe813ad971b7307D9a3cA6774;
+         seller["Paul"]=0x928fDBA7Cb15a97f35ec8196211e9BbF3D6b6963;
     }
 
     mapping(address => Manufacturer) public manufacturers;
