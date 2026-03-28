@@ -52,41 +52,9 @@ async function connectWallet() {
         alert("Access denied: Not an admin");
         adminCard.classList.add("hidden");
     }
+
+    
 }
-
-async function init() {
-    if (window.ethereum) {
-        try {
-            web3 = new Web3(window.ethereum);
-
-            const accounts = await window.ethereum.request({
-                method: "eth_requestAccounts"
-            });
-
-            account = accounts[0];
-
-            const response = await fetch("../../blockchain/build/contracts/Veritas.json");
-            const data = await response.json();
-
-            contract = new web3.eth.Contract(
-                data.abi,
-                contractAddress
-                );
-
-        } catch (error) {
-            console.error("User denied access");
-        }
-    } else {
-        alert("Please install MetaMask");
-    }
-        window.ethereum.on('accountsChanged', (accounts) => {
-        account = accounts[0];
-        console.log("Account changed:", account);
-    });
-}
-
-init();
-
 
 form.addEventListener("submit", async (e) => {
     e.preventDefault();

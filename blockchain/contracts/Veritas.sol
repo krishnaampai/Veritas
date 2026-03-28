@@ -45,6 +45,7 @@ contract Veritas {
     }*/
     
     function addSeller(string memory name, address wallet) public {
+        require( manufacturers[msg.sender].verified==true, "Only verified manufacturers can add sellers");
 
         sellerNames[wallet] = name;
         seller[name] = wallet;
