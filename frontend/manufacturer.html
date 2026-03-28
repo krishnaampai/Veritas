@@ -9,19 +9,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
-<body><nav class="navbar">
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
     <h2 class="logo">Veritas</h2>
 
     <ul class="nav-links">
-       <li><a href="index.html">Home</a></li>
+        <li><a href="index.html">Home</a></li>
         <li><a href="consumer.html">Consumer</a></li>
         <li><a href="seller.html">Seller</a></li>
-        <a href="manufacturer.html" class="active">Manufacturer</a>
+        <li><a href="manufacturer.html" class="active">Manufacturer</a></li>
     </ul>
 </nav>
 
-
-
+<!-- HEADER -->
 <header>
     <h1>Manufacturer Portal</h1>
     <p>Only verified manufacturers can add products</p>
@@ -31,9 +33,16 @@
 
     <!-- WALLET -->
     <div class="wallet-section">
-        <button id="connectBtn">
-            <i class="fab fa-ethereum"></i> Connect MetaMask
-        </button>
+
+        <div class="wallet-actions">
+            <button id="connectBtn">
+                <i class="fab fa-ethereum"></i> Connect MetaMask
+            </button>
+
+            <button id="addSellerBtn" class="hidden">
+                ➕ Add Seller
+            </button>
+        </div>
 
         <div id="walletAddress" class="status">
             Wallet not connected
@@ -42,19 +51,18 @@
         <div id="verificationStatus" class="status"></div>
     </div>
 
-    <!-- PRODUCTS DASHBOARD -->
-    <section id="products-section"  class="products-section hidden">
-
+    <!-- PRODUCTS -->
+    <section id="products-section" class="products-section hidden">
         <h2>Your Products</h2>
-
         <div id="productGrid" class="product-grid"></div>
         <div id="transferSection"></div>
+
         <section class="timeline-section">
             <h2 id="timelineTitle">Ownership Timeline</h2>
             <div id="timeline"></div>
         </section>
-        <section id="reviewsSection" class = "reviewSection hidden">
 
+        <section id="reviewsSection" class="reviewSection hidden">
             <h2>Customer Reviews</h2>
 
             <div id="ratingSummary">
@@ -64,14 +72,11 @@
             </div>
 
             <div id="reviewsList"></div>
-
         </section>
-
     </section>
 
     <!-- ADD PRODUCT -->
     <section id="productSection" class="product-section hidden">
-
         <h2>Add Product</h2>
 
         <div class="form-group">
@@ -90,33 +95,42 @@
         </div>
 
         <div class="center">
-            <button id="addProductBtn">
-                Add Product
-            </button>
+            <button id="addProductBtn">Add Product</button>
         </div>
 
         <div id="qrSection" style="display:none;">
             <h3>Product QR Code</h3>
-           <canvas id="qrCanvas" width="350" height="350"></canvas>
+            <canvas id="qrCanvas" width="350" height="350"></canvas>
         </div>
-
-    </section>
-
-    <section id="reviewsSection" class="hidden">
-
-        <h2 id="reviewsTitle">Product Reviews</h2>
-
-        <div class="rating-summary">
-            <span id="overallStars"></span>
-            <span id="avgRating"></span>
-            (<span id="reviewCount"></span> reviews)
-        </div>
-
-        <div id="reviewsList"></div>
-
     </section>
 
 </div>
+
+<!-- ✅ ADD SELLER POPUP -->
+<div id="sellerModal" class="modal hidden">
+    <div class="modal-content">
+
+        <h2>Add Seller</h2>
+
+        <div class="form-group">
+            <label>Seller Address</label>
+            <input type="text" id="sellerAddress" placeholder="0x..." />
+        </div>
+
+        <div class="form-group">
+            <label>Seller Name</label>
+            <input type="text" id="sellerName" placeholder="Enter name" />
+        </div>
+
+        <div class="modal-buttons">
+            <button id="submitSellerBtn">Add Seller</button>
+            <button id="closeModalBtn" class="cancel-btn">Cancel</button>
+        </div>
+
+    </div>
+</div>
+
+<!-- SCRIPTS -->
 <script src="../config.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
 <script src="../../blockchain/build/contracts/Veritas.json" type="application/json" id="contractData"></script>
@@ -130,5 +144,6 @@
 <script src="../firebaseauth.js"></script>
 <script src="../frontend/scripts/ownership.js"></script>
 <script defer src="../frontend/scripts/manufacturer.js"></script>
+
 </body>
 </html>

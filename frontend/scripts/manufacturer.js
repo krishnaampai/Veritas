@@ -15,11 +15,15 @@ const walletAddressDiv = document.getElementById("walletAddress");
 const verificationStatusDiv = document.getElementById("verificationStatus");
 const productSection = document.getElementById("productSection");
 const productssection = document.getElementById("products-section");
+const addSellerBtn = document.getElementById("addSellerBtn");
+const modal = document.getElementById("sellerModal");
+const closeBtn = document.getElementById("closeModalBtn");
+const submitSellerBtn = document.getElementById("submitSellerBtn");
+
 
 connectBtn.addEventListener("click", connectWallet);
 addProductBtn.addEventListener("click", addProduct);
-
-
+submitSellerBtn.addEventListener("click", addSeller);
 
 async function connectWallet() 
 {
@@ -37,6 +41,7 @@ async function connectWallet()
     const accounts = await web3.eth.getAccounts();
     currentAccount = accounts[0];
     console.log(currentAccount);
+    addSellerBtn.style.display = "block";
 
     walletAddressDiv.innerText =
         "Connected Wallet: " + currentAccount;
@@ -275,3 +280,53 @@ async function loadMyProducts() {
         grid.appendChild(card);
     }
 }
+
+addSellerBtn.onclick = () => {
+    modal.classList.remove("hidden");
+};
+
+// close
+closeBtn.onclick = () => {
+    modal.classList.add("hidden");
+};
+
+async function addSeller(){
+    const address = document.getElementById("sellerAddress").value;
+    const name = document.getElementById("sellerName").value;
+
+    if (!address || !name) {
+        alert("Fill all fields");
+        return;
+    }
+
+    if (!web3.utils.isAddress(address)) {
+        alert("Invalid address");
+        return;
+    }
+
+    if (address === "0x0000000000000000000000000000000000000000") 
+        {
+        alert("Zero address not allowed");
+        return;
+    }
+
+    try {
+
+        await contract.methods
+            .addSeller(name, address)
+            .send({ from: currentAccount });
+
+        alert("✅ Seller added successfully");
+
+        //modal.classList.add("hidden");
+
+        // clear fields
+        document.getElementById("sellerAddress").value = "";
+        document.getElementById("sellerName").value = "";
+
+    } catch (err) {
+        console.error(err);
+        alert("❌ Transaction failed");
+    }
+}
+
