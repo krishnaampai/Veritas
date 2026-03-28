@@ -27,9 +27,20 @@
 
     <!-- MAIN CONTAINER -->
     <div class="admin-container">
+        <div class="wallet-section">
+        <button id="connectBtn">
+            <i class="fab fa-ethereum"></i> Connect MetaMask
+        </button>
+
+        <div id="walletAddress" class="status">
+            Wallet not connected
+        </div>
+
+        <div id="verificationStatus" class="status"></div>
+    </div>
 
         <!-- FORM CARD -->
-        <div class="admin-card">
+        <div id="admin-card" class = "admin-card hidden">
             <h2>Add Manufacturer</h2>
 
             <form id="manufacturerForm">

@@ -6,7 +6,53 @@ const contractAddress = window.ENV.CONTRACT_ADDRESS;
 
 const form = document.getElementById("manufacturerForm");
 const status = document.getElementById("statusfield");
+const adminCard = document.getElementById("admin-card");
+connectBtn.addEventListener("click", connectWallet);
+const walletAddressDiv = document.getElementById("walletAddress");
 
+
+async function connectWallet() {
+    console.log("Hello");
+
+    if (!window.ethereum) {
+        alert("MetaMask not installed");
+        return;
+    }
+
+    await ethereum.request({ method: "eth_requestAccounts" });
+
+    web3 = new Web3(window.ethereum);
+
+    const accounts = await web3.eth.getAccounts();
+    currentAccount = accounts[0];
+
+    console.log(currentAccount);
+
+    walletAddressDiv.innerText =
+        "Connected Wallet: " + currentAccount;
+
+    // Load contract
+    const response = await fetch("../../blockchain/build/contracts/Veritas.json");
+    const data = await response.json();
+
+    contract = new web3.eth.Contract(
+        data.abi,
+        contractAddress
+    );
+
+    const isAdmin = await contract.methods
+        .isAdmin(currentAccount)
+        .call();
+
+    console.log("Is Admin:", isAdmin);
+
+    if (isAdmin) {
+        adminCard.classList.remove("hidden");
+    } else {
+        alert("Access denied: Not an admin");
+        adminCard.classList.add("hidden");
+    }
+}
 
 async function init() {
     if (window.ethereum) {
