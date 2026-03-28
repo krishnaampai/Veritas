@@ -208,4 +208,7 @@ function transferOwnership(
     function getSeller(string memory name) public view returns (address) {
         return seller[name];
     }
+    function isAdmin(address user) public view returns (bool) {
+    return bytes(admins[user]).length > 0;
+}
 }
