@@ -90,6 +90,10 @@ async function renderTimeline(history,productId){
             role = "Manufacturer";
         }
 
+        else{
+            name = await contract.methods.getSellerName(owner).call() || "Seller";
+        }
+
         if(i === history.length - 1){
             role = "Current Owner";
         }
